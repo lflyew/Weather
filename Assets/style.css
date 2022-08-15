@@ -5,6 +5,15 @@ header h1 {
 
 body {
     background-color: beige;
-    display: flex;
 }
 
+.container {
+    display: inline;
+}
+
+.search-panel {
+    background-color: aliceblue;
+
+}
+
+.card
