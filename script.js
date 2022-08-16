@@ -1,6 +1,6 @@
 localStorage.clear;
 // Variables created
-var API key = '558872b4719f78b0116470aa2fdbdd69'
+var APIkey = '558872b4719f78b0116470aa2fdbdd69'
 var searchboxEl = document.querySelector("#search-box");
 var citysearchEl = document.querySelector("#city");
 var currentweatherEl = document.querySelector("#heading");
@@ -30,5 +30,20 @@ var formSumbit = function (event){
         
             return;
         }
-        }
-    
+ 
+   }
+   //city name and find lat and lon coordinates
+    var getCoordinates = function(city) {
+
+        var apiurl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIkey
+        fetch (apiurl)
+        .then (function(res) {
+            error.innerhtml = ""
+            return res.JSON();
+        })
+        .then (function(data) {
+            var lat = (data[0].lat)
+            var lon = (data[0].lon)
+            getweather (lat, lon)
+        })
+    }
