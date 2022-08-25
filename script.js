@@ -1,12 +1,12 @@
-localStorage.clear;
+//localStorage.clear;
 // Variables created
 var APIkey = '558872b4719f78b0116470aa2fdbdd69'
-var searchboxEl = document.querySelector("#search-box");
-var citysearchEl = document.querySelector("#city");
-var currentweatherEl = document.querySelector("#heading");
+var searchbox = document.querySelector("#search-box");
+var citysearch = document.querySelector("#city");
+var currentweather = document.querySelector("#heading");
 var currentdata = document.querySelector("#current-data");
 var clearbtn = document.querySelector("#clear-btn");
-var searchpanel = document.querySelecto("#search-panel");
+var searchpanel = document.querySelector("#search-panel");
 var error = document.querySelector("#error-box");
 var temp = document.querySelector("#temp");
 var humid = document.querySelector("#humid");
@@ -14,7 +14,7 @@ var uvi = document.querySelector("#uvi");
 var weathericon = document.querySelector("#weather-icon");
 var currenticon = document.querySelector("#current-icon");
 var wind = document.querySelector("#wind");
-
+    
 var search = JSON.parse(localStorage.getItem("search") || "[]");
 //Search city
 var formSumbit = function (event){
@@ -45,5 +45,43 @@ var formSumbit = function (event){
             var lat = (data[0].lat)
             var lon = (data[0].lon)
             getweather (lat, lon)
+        })
+    
+    // error if a valid city is not entered
+    .catch(function(error){
+        error.innerHTML = "Enter A Valid City!";
+        return;
+    })}
+
+    var displayWeather = function(lat, lon){
+        var apiurl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +"&lon=" + lon + "&units=imperial&appid=" + APIkey
+        fetch (apiurl)
+        .then(function(res) {
+            if (res,ok){
+                return res.json();
+
+            }else{
+                alert("Invalid")
+            }
+
+        }) 
+        .then(function(data){
+            getWeather(data);
+            getForecast(data);
+        })
+    }
+    //current weather
+
+    var getWeather = function(data) {
+        var apiurl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.lat +"&lon=" + data.lon + "&limit=1&appid" + APIkey
+        var icon =  "https://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png"
+        fetch(apiurl)
+        .then(function(res) {
+            return res.json();
+        })
+        .then(function(data) {
+            currentweather.innerHTML = data[0].name +"(" + SVGAnimateMotionElement().format("M/D/YYYY") + ")";
+            currenticon.innerHTML = "<img src=" + icon + ">";
+            saveSearch(data[0].name);
         })
     }
