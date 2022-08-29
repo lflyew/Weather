@@ -84,4 +84,21 @@ var formSumbit = function (event){
             currenticon.innerHTML = "<img src=" + icon + ">";
             saveSearch(data[0].name);
         })
+
+        temp.textContent = "Temp: " + data.current.temp + ""
+        wind.textContente = "Wind: " + data.current.wind_speed + " MPH"
+        humid.textContent = "Humidity: " + data.current.humidity + " %"
+
+        if (data.current.uvi < 2) {
+            uvi.innerHTML = "UV Index: " + "<span class='uvi-low'>" + data.current.uvi + "</span>"
+        }
+        else if (data.current.uvi < 5) {
+            uvi.innerHTML = "UV Index: " + "<span class='uvi-mid'>" + data.current.uvi + "</span>"
+        }
+        else if (data.current.uvi < 7) {
+            uvi.innerHTML = "UV Index: " + "<span class='uvi-high'>" + data.current.uvi + "</span>"
+    }
+    else  {
+        uvi.innerHTML = "UV Index: " + "<span class='uvi-vhigh'>" + data.current.uvi + "</span>"
+}
     }
