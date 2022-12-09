@@ -1,18 +1,269 @@
-header h1 {
+ .h1 {
     font-family: 'Rubik Distressed', cursive;
-    font-size: 100px;
+    font-size: 3.25rem;
+    font-weight: bold;
+    margin: 2rem auto;
 }
 
+.header {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    background-color: rgb(75, 105, 177);
+    background-image: linear-gradient(90deg, rgba(75,105,177,1) 13%, rgba(35,77,167,1) 42%, rgba(1,1,105,1) 80%);
+}
+
+.border {
+    border: 1px solid black;
+}
 body {
-    background-color: beige;
+    min-height: 100vh;
 }
-
+.spacebetween {
+    justify-content: space-around;
+}
 .container {
     display: inline;
+    width: 80%;
+    margin: 0 auto;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.heading {
+    color:aliceblue;
+}
 .search-panel {
     background-color: aliceblue;
+    font-weight: bold;
+    font-size: 4rem;
 
 }
 
+.error-msg{
+    color: red;
+    text-align: center;
+}
+
+.col1 {
+    width: 20%;
+    margin: 0 auto;
+}
+
+.col2 {
+    width: 65%;
+    margin-right: auto;
+    margin-top: 1%;
+
+}
+
+.col3 {
+    width: 18%;
+}
+
+h2 {
+    font-weight: bold;
+    margin-left: 1%;
+    align-items: center;
+    display: flex;
+    font-size: 3rem;
+}
+
+#city {
+    font-size: 2rem;
+    padding-left: .5rem;
+    padding-top: 0px;
+    height: 4.5rem;
+    border:.1rem solid gray;
+    padding-bottom: .5rem;
+    border-radius: .4rem;
+    width: 100%;
+}
+
+.btn {
+    background-color: blue;
+    color:aliceblue;
+    margin-bottom: 2rem;
+    
+}
+.btn {
+    width: 100%;
+    background-color: lightgray;
+    font-size: 2rem;
+    color: black;
+    border-radius: .4rem;
+    border: none;
+    padding: .6rem 0;
+    margin-top: 2rem;
+}
+
+#current-weather {
+    border: .1rem solid black;
+    height: 50%;
+}
+
+.uvi-low{
+    background-color: greenyellow;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+.uvi-mid{
+    background-color: yellow;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+.uvi-high{
+    background-color: red;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+.uvi-vhigh{
+    background-color: darkred;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.card-body {
+    background-color: aliceblue;
+    border-radius: 20px;
+    border: 2px solid black;
+    box-shadow: 5px 5px 3px grey;
+    padding: 7px;
+
+}
+
+.card{
+    background-color: transparent;
+    height: 165px;
+    border: none;
+
+}
+.card-icon{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: larger;
+
+}
+
+#current-forecast{
+    box-shadow: 5px 5px 3px grey;
+    background-color: aliceblue;
+    border-radius: 10px;
+    border: 2px solid black;
+
+
+}
+
+#currenticon img{
+width: 100px;
+height: 100px;
+}
+
+.search-btn:hover{
+    background-color:gray
+
+}
+
+.search-btn{
+    color:aliceblue;
+    text-align: center;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: gray;
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1144px) {
+    
+    .col1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    #city-search, hr, .btn {
+        width: 30rem;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    #city {
+        text-align: center;
+    }
+
+    #search-history {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #search-btn {
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 0;
+    }
+
+    .col2 {
+        width: 100%;
+    }
+
+    .col3 {
+        width: 100%;
+    }
+
+    #current-weather {
+        height: 20%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 2rem;
+        width: 500px;
+    }
+
+  
+
+    .card-body {
+        background-color: #00334d;
+        height: 20rem;
+        padding-left: 0;
+        padding-top: 1%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 20rem;
+        margin: .5rem auto;
+    }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) {
+    .col1 {
+        width: 100%;
+    }
+
+    .col2 {
+        width: 100%;
+    }
+
+    .col3 {
+        width: 100%;
+    }
+
+}
+
+/* // Small devices (landscape phones, 630px and up) */
+@media (max-width: 630px) {
+
+    #current-weather {
+        width: 300px;
+    }
+
+}
