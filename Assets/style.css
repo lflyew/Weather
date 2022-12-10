@@ -104,37 +104,78 @@ h2 {
     height: 50%;
 }
 
+#current-weather-icon {
+    filter: drop-shadow(0 0 0.75rem grey);
+}
+
 .uvi-low{
     background-color: greenyellow;
     padding: 1px 5px;
     border-radius: 5px;
+    font-size: 2rem;
 }
 .uvi-mid{
     background-color: yellow;
     padding: 1px 5px;
     border-radius: 5px;
+    font-size: 2rem;
 }
 .uvi-high{
     background-color: red;
     padding: 1px 5px;
     border-radius: 5px;
+    font-size: 2rem;
 }
-.uvi-vhigh{
+/* .uvi-vhigh{
     background-color: darkred;
     padding: 1px 5px;
     border-radius: 5px;
+} */
+ul {
+    margin-left: 1%;
+    list-style-type: none;
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-around;
+}
+h3 {
+    color:aliceblue;
+    font-size: 2rem;
+    font-weight: bold;
+}
+span {
+    padding: 1 1.5rem;
+    color: aliceblue;
+
 }
 
 .card-body {
-    background-color: aliceblue;
+    background-color: cadetblue;
     border-radius: 20px;
     border: 2px solid black;
     box-shadow: 5px 5px 3px grey;
     padding: 7px;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
 
 }
+#five-day-header {
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
 
-.card{
+p{
+    color:aliceblue;
+    font-size: 2rem;
+}
+
+/* .card{
     background-color: transparent;
     height: 165px;
     border: none;
@@ -177,7 +218,7 @@ height: 100px;
     padding: 5px;
     border-radius: 5px;
     background-color: gray;
-}
+} */
 
 /* // Extra large devices (large desktops, 1200px and up) */
 @media (max-width: 1144px) {

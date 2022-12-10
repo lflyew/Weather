@@ -1,33 +1,94 @@
 // Variables created
 var APIkey = '829a8abf9ba97f109b53bd49897b45fc';
-const citysearch = document.querySelector("#city");
-const currentweather = document.querySelector("#heading");
-const currentdata = document.querySelector("#current-data");
-const clearbtn = document.querySelector("#clear-btn");
-const searchpanel = document.querySelector("#search-panel");
-const error = document.querySelector("#error-box");
-const temp = document.querySelector("#temp");
-const humid = document.querySelector("#humid");
-const uvi = document.querySelector("#uvi");
-var searchbox = document.querySelector("#search-box");
+const weathericon = 'http://openweathermap.org/img/wn/';
+var onecall = 'https://api.openweathermap.org/data/2.5/onecall?lat=';
+var url = 'https://api.openweathermap.org/data/2.5/weather?q=';
 
-const weathericon = document.querySelector("#weather-icon");
-const currenticon = document.querySelector("#current-icon");
-const wind = document.querySelector("#wind");
-    
-searchbox.addEventListener('submit', function(event){
-    event.preventDefault();
-    var city = citysearch.value
-    if (city) {
+var citysearch = $('#city-search');
+var col2 = $('.col2');
+var cityIn = $('#city');
+var searchHis = $('#search-history');
+var fiveD = $('#five-day');
+var currentD =moment().format('M/DD/YYYY');
 
-                    getCoordinates(city);
-                    error.innerHTML = ""
-                } else{
-                    error.innerHTML = "Please enter City"
-                
-                    return;
-                }
-})
+// const currentweather = document.querySelector("#heading");
+// const currentdata = document.querySelector("#current-data");
+// const clearbtn = document.querySelector("#clear-btn");
+// const searchpanel = document.querySelector("#search-panel");
+// const error = document.querySelector("#error-box");
+// const temp = document.querySelector("#temp");
+// const humid = document.querySelector("#humid");
+// const uvi = document.querySelector("#uvi");
+var searchHistoryA = loadSearchHistory(); 
+
+// const currenticon = document.querySelector("#current-icon");
+// const wind = document.querySelector("#wind");
+    function titlecase(str) {
+        var splitS = str.toLowerCase().split(' ');
+        for (var i = 0; i < splitS.length; i++) {
+            splitS[i] = splitS[i].charAt(0).toUpperCase() + splitS[i].substring(1);
+        }
+        return splitS.join(' ');
+    }
+
+function loadSearchHistory(){
+    var searchHistoryA = JSON.parse(localStorage.getItem('search history'));
+if (!searchHistoryA){
+    searchHistoryA ={
+        searchedCity:[],
+    };
+} else{
+    for (var i= 0; i< searchHistoryA.searchedCity.length; i++) {
+        searchHistory(searchHistoryA.searchedCity[i]);
+    }
+}
+return searchHistoryA;
+
+//local storage
+function saveHistory() {
+    localStorage.setItem('search history', JSON.stringify(searchHistoryA));
+};
+
+function searchHistory(city){
+    var searchHistoryBtn = $('<button>')
+    .addClass('btn')
+    .text(city)
+    .on('click', function () {
+        $('#current-weather').remove();
+        $('#five-day').empty();
+        $('#five-day-header').remove();
+        getWeather(city);
+    })
+    .attr({
+        type: 'button'
+    });
+    searchHis.append(searchHistoryBtn);
+}
+
+//get weather data
+
+function getWeather(city){
+    var apiCoordinates = url + city + '&appid=' + APIkey;
+    fetch(apiCoordinates)
+    .then(function (coordinateResponse) {
+        if(coordinateResponse.ok) {
+            coordinateResponse.json().then(function (data) {
+                var Lat = data.coord.lat;
+                var long = data.coord.lon;
+                var onecall = onecall + Lat + '&lon=' + long + '&appid=' + APIkey + '&units=imperial';
+
+                fetch(onecall)
+                .then(function(weatherResponse) {
+                    if (weatherResponse.ok) {
+                        weatherResponse.json().then(function (weatherData) {
+                            
+                        })
+                    }
+                })
+            })
+        }
+    })
+}
 
 
 var search = JSON.parse(localStorage.getItem("search") || "[]");
